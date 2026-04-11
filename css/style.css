@@ -359,10 +359,33 @@ h1, h2, h3, h4 {
     color: var(--text-primary);
 }
 
-.project-content p {
+.project-content p,
+.project-details {
     color: var(--text-secondary);
     margin-bottom: 1.5rem;
     flex-grow: 1;
+}
+
+.project-details {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.project-details li {
+    margin-bottom: 0.8rem;
+    font-size: 0.95rem;
+    position: relative;
+    padding-left: 1.2rem;
+}
+
+.project-details li::before {
+    content: '▹';
+    color: var(--accent-color);
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-family: var(--font-mono);
+    font-weight: bold;
 }
 
 .project-tech {
