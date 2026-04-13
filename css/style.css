@@ -384,12 +384,12 @@ body {
 }
 
 .exp-logo {
-    height: 24px;
+    height: 32px;
     width: auto;
-    max-width: 80px;
+    max-width: 100px;
     object-fit: contain;
-    background: rgba(255,255,255,0.9);
-    padding: 2px 4px;
+    background: transparent;
+    padding: 0;
     border-radius: 4px;
 }
 
@@ -402,6 +402,25 @@ body {
 .exp-item p {
     color: var(--text-secondary);
     font-size: 0.95rem;
+}
+
+/* Skills Grid New */
+.skills-grid-new {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .skills-grid-new {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.skill-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
 }
 
 /* Projects Section */
