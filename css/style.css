@@ -43,6 +43,13 @@ body {
 .mt-8 { margin-top: 2rem; }
 .mt-12 { margin-top: 3rem; }
 
+/* Layout Utilities */
+.relative { position: relative; }
+.absolute { position: absolute; }
+.top-6 { top: 1.5rem; }
+.left-6 { left: 1.5rem; }
+.overflow-hidden { overflow: hidden; }
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
