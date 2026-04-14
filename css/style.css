@@ -152,6 +152,24 @@ body {
 [data-animate-delay="2"] { transition-delay: 0.24s; }
 [data-animate-delay="3"] { transition-delay: 0.36s; }
 
+/* ─── Hero Cascade Animation ─── */
+[data-hero] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-hero].hero-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Active nav link */
+.nav-links a.active {
+    color: var(--text-primary);
+}
+
 /* ─── Hero ─── */
 .hero {
     min-height: 100vh;
@@ -236,13 +254,15 @@ body {
     border: 1px solid var(--border-color);
     border-radius: 24px;
     padding: 2.5rem;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
     display: flex;
     flex-direction: column;
 }
 
 .bento-card:hover {
     border-color: var(--border-hover);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    transform: translateY(-2px);
 }
 
 .col-span-2 { grid-column: span 1; }
