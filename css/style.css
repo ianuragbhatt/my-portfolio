@@ -363,6 +363,13 @@ body {
     color: var(--text-secondary);
 }
 
+.exp-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin-top: 0.4rem;
+}
+
 .edu-info {
     display: flex;
     flex-direction: column;
