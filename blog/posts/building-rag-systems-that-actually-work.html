@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building RAG Systems That Actually Work | Anurag Bhatt</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/blog.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="../../" class="logo">AB.</a>
+            <ul class="nav-links">
+                <li><a href="../../#about">About</a></li>
+                <li><a href="../../#experience">Experience</a></li>
+                <li><a href="../../#projects">Work</a></li>
+                <li><a href="../../blog/">Blog</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="article-header">
+            <a href="../../blog/" class="article-back"><i class="fas fa-arrow-left"></i> All Posts</a>
+            <span class="article-category">RAG</span>
+            <h1>Building RAG Systems That Actually Work</h1>
+            <div class="article-meta">
+                <span><i class="far fa-calendar"></i> April 14, 2026</span>
+                <span><i class="far fa-clock"></i> 8 min read</span>
+            </div>
+        </div>
+
+        <hr class="article-divider">
+
+        <article class="article-content">
+            <p>Most RAG tutorials stop at &ldquo;chunk your docs, embed them, retrieve top-k, feed to GPT.&rdquo; That gets you a demo. It does not get you a product.</p>
+<p>Over the past year I built <strong>Cobuddy</strong>, a context-aware search system serving 1,000+ active users in US healthcare. Along the way I learned that the gap between a RAG demo and a RAG product is enormous — and it&rsquo;s almost never about the model.</p>
+<p>Here&rsquo;s what actually mattered.</p>
+<h2>1. Context-Aware Search Beats Naive Retrieval</h2>
+<p>The default RAG pattern — embed a query, pull the top 5 chunks, send to the LLM — falls apart the moment your corpus gets large or your questions get nuanced.</p>
+<p>What worked for us was building <strong>two parallel indices</strong>: one over raw document chunks, and another over pre-generated summaries and FAQs. At query time, the system searches both and merges the results before sending to the LLM.</p>
+<p>This single change improved answer accuracy by <strong>40%</strong>.</p>
+<blockquote>
+<p>The best retrieval strategy isn&rsquo;t the one that finds the most relevant chunk. It&rsquo;s the one that gives the LLM enough context to reason correctly.</p>
+</blockquote>
+<p>Why does this work? Because summaries capture <em>intent</em> and <em>structure</em> that individual chunks lose. A question like &ldquo;What&rsquo;s the appeals process for denied claims?&rdquo; needs context that spans multiple document sections. Summaries provide that bridge.</p>
+<h2>2. Query Refinement Is the Hidden Multiplier</h2>
+<p>Users type terrible queries. Short, vague, full of typos, missing context. If you pass those directly to your embedding model, you get mediocre retrieval no matter how good your index is.</p>
+<p>We added a <strong>hidden query-refinement step</strong> between the user&rsquo;s input and the search. A lightweight LLM call that:</p>
+<ul>
+<li>Expands abbreviations and acronyms</li>
+<li>Adds implicit context from the conversation history</li>
+<li>Reformulates vague questions into specific, searchable queries</li>
+</ul>
+<p>The user never sees this. They type &ldquo;denied claim help&rdquo; and the system searches for &ldquo;What is the process for appealing a denied healthcare claim, including timelines and required documentation?&rdquo;</p>
+<p>This was cheap (a fast, small model handles it) and the retrieval quality improvement was dramatic.</p>
+<h2>3. Smart Routing Cuts Costs Without Cutting Quality</h2>
+<p>Not every query needs GPT-4. A simple factual lookup (&ldquo;What&rsquo;s the phone number for Aetna?&rdquo;) can be handled by a much cheaper model. A complex multi-step reasoning question (&ldquo;Compare the appeals processes for Aetna and UnitedHealth for out-of-network denials&rdquo;) genuinely needs the expensive model.</p>
+<p>We built a <strong>routing layer</strong> that classifies each query by complexity and routes it to the most cost-effective model:</p>
+<pre><code class="language-python">def route_query(query, context):
+    complexity = classify_complexity(query, context)
+    if complexity == &quot;simple&quot;:
+        return &quot;gpt-3.5-turbo&quot;
+    elif complexity == &quot;moderate&quot;:
+        return &quot;gpt-4o-mini&quot;
+    else:
+        return &quot;gpt-4o&quot;
+</code></pre>
+<p>The actual implementation is more nuanced (it considers the retrieved context quality too), but the principle is simple: <strong>match model capability to task difficulty</strong>.</p>
+<p>Result: <strong>60% reduction in API costs</strong> with no measurable drop in answer quality.</p>
+<h2>4. Document Ingestion Is the Unsexy Bottleneck</h2>
+<p>Everyone wants to talk about the LLM. Nobody wants to talk about the ingestion pipeline. But this is where production RAG systems live or die.</p>
+<p>Our pipeline processes <strong>10,000+ chunks</strong> across hundreds of documents. The challenges that don&rsquo;t show up in tutorials:</p>
+<ul>
+<li><strong>PDF layouts are adversarial.</strong> Tables, multi-column layouts, headers/footers, watermarks — standard text extractors butcher these. We used <strong>AI Vision</strong> to handle the complex layouts that traditional parsers missed.</li>
+<li><strong>Chunk boundaries matter enormously.</strong> Splitting mid-sentence or mid-paragraph destroys context. We chunk by semantic boundaries (sections, paragraphs) rather than fixed token counts.</li>
+<li><strong>Metadata is retrieval gold.</strong> Every chunk carries its source document, section heading, page number, and document type. This metadata powers filtering and re-ranking.</li>
+</ul>
+<h2>5. What I&rsquo;d Do Differently</h2>
+<p>If I were starting Cobuddy from scratch today:</p>
+<ul>
+<li><strong>Start with evaluation.</strong> Build your eval set before you build your pipeline. Without a way to measure &ldquo;better,&rdquo; you&rsquo;re tuning blind.</li>
+<li><strong>Log everything.</strong> Every query, every retrieval result, every LLM response, every user action. The logs are how you find the failure modes.</li>
+<li><strong>Ship the simple version first.</strong> Our fancy routing system came months after launch. The first version was naive RAG with good chunking. It was enough to learn what actually needed improving.</li>
+</ul>
+<p>The gap between a RAG demo and a RAG product isn&rsquo;t the model or the framework. It&rsquo;s the hundred small decisions about how you process documents, refine queries, manage context, and route requests. Get those right and the LLM almost doesn&rsquo;t matter.</p>
+        </article>
+
+        <div class="article-footer">
+            <a href="../../blog/" class="article-back"><i class="fas fa-arrow-left"></i> All Posts</a>
+        </div>
+
+        <footer id="contact" class="site-footer">
+            <div class="footer-content">
+                <h2>Let's build<br>the future.</h2>
+                <a href="mailto:anur4g.bhatt@outlook.com" class="btn primary-btn mt-6">Get in Touch</a>
+                <div class="footer-links mt-12">
+                    <a href="http://github.com/ianuragbhatt/" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="https://www.linkedin.com/in/ianuragbhatt/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    <a href="https://x.com/ianuragbhatt" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i> Twitter</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Anurag Bhatt. All rights reserved.</p>
+                <p>Designed with intention.</p>
+            </div>
+        </footer>
+    </main>
+
+    <script src="../../js/script.js"></script>
+</body>
+</html>

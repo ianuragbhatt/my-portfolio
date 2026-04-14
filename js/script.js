@@ -3,52 +3,30 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
-            
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth'
-                });
+                targetElement.scrollIntoView({ behavior: 'smooth' });
             }
         });
     });
 
-    // Navbar background change on scroll
+    // Navbar — add/remove class on scroll
     const navbar = document.querySelector('.navbar');
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.style.background = 'rgba(10, 10, 15, 0.95)';
-            navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.5)';
-        } else {
-            navbar.style.background = 'rgba(10, 10, 15, 0.85)';
-            navbar.style.boxShadow = 'none';
-        }
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
     });
 
-    // Simple Typewriter effect
-    const textElement = document.querySelector('.typewriter-text');
-    const textToType = textElement.textContent;
-    textElement.textContent = '';
-    
-    let i = 0;
-    function typeWriter() {
-        if (i < textToType.length) {
-            textElement.textContent += textToType.charAt(i);
-            i++;
-            setTimeout(typeWriter, 50); // Typing speed
-        } else {
-            // Optional: add a blinking cursor effect after typing finishes
-            textElement.innerHTML += '<span class="cursor">_</span>';
-            const cursor = document.querySelector('.cursor');
-            setInterval(() => {
-                cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
-            }, 500);
-        }
-    }
-    
-    // Start typing effect slightly after load
-    setTimeout(typeWriter, 500);
+    // Scroll-triggered fade-up animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
 });

@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="dark-theme">
+<body>
     <nav class="navbar">
         <div class="nav-content">
             <a href="#" class="logo">AB.</a>
@@ -18,27 +18,26 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#projects">Work</a></li>
+                <li><a href="blog/">Blog</a></li>
             </ul>
-            <a href="mailto:hello@example.com" class="btn outline-btn nav-cta">Book a Call</a>
         </div>
     </nav>
 
     <main class="container">
         <!-- Hero Section -->
         <header class="hero">
-            <div class="hero-top-bar">
-                <span class="mono-badge"><i class="fas fa-map-marker-alt"></i> BASED IN INDIA</span>
-                <span class="mono-badge"><span class="status-dot"></span> AVAILABLE FOR WORK</span>
+            <div class="hero-eyebrow">
+                <span class="status-dot"></span>
+                <span>Available for Work</span>
             </div>
-            
+
             <h1 class="hero-name">ANURAG<br>BHATT.</h1>
-            
-            <div class="hero-bottom-bar">
-                <p class="hero-desc">Data Scientist & AI Engineer with 7+ years of experience, specializing in Machine Learning, Deep Learning, NLP, and Generative AI. Building intelligent systems and scalable solutions.</p>
-                <div class="hero-actions">
-                    <a href="#projects" class="btn primary-btn">Explore Work <i class="fas fa-arrow-down"></i></a>
-                    <a href="resume/resume.pdf" class="btn secondary-btn" download><i class="fas fa-download"></i> Resume</a>
-                </div>
+
+            <p class="hero-tagline">AI Engineer. 7 years building intelligent systems<br>that solve real problems at scale.</p>
+
+            <div class="hero-actions">
+                <a href="#projects" class="btn primary-btn">Explore Work</a>
+                <a href="resume/resume.pdf" class="btn ghost-btn" download>Resume <i class="fas fa-arrow-up-right-from-square"></i></a>
             </div>
         </header>
 
@@ -46,19 +45,19 @@
         <section id="about" class="bento-section">
             <div class="bento-grid">
                 <!-- About Card -->
-                <div class="bento-card col-span-3">
+                <div class="bento-card col-span-3" data-animate>
                     <span class="card-subtitle">01 / Background</span>
-                    <h2>Proven Track Record</h2>
-                    <p class="mt-4 text-secondary">I have a proven ability to leverage AI across diverse industries, including US healthcare, manufacturing, finance, and automotive. Proficient in cloud platforms like GCP, AWS ML tools, and Azure ML.</p>
-                    
+                    <h2>Generative AI Engineer</h2>
+                    <p class="mt-4 text-secondary">Specializing in production Generative AI — designing RAG pipelines, deploying LLMs (GPT-4, Llama, Gemma), and shipping intelligent systems across US healthcare, finance, and manufacturing.</p>
+
                     <div class="stats-row mt-6">
                         <div class="stat-block">
                             <span class="stat-num">7+</span>
                             <span class="stat-label">Years Exp.</span>
                         </div>
                         <div class="stat-block">
-                            <span class="stat-num">100+</span>
-                            <span class="stat-label">Payers Analyzed</span>
+                            <span class="stat-num">40%</span>
+                            <span class="stat-label">Accuracy Lift</span>
                         </div>
                         <div class="stat-block">
                             <span class="stat-num">60%</span>
@@ -68,7 +67,7 @@
                 </div>
 
                 <!-- Tech Stack Card -->
-                <div class="bento-card col-span-3" id="skills">
+                <div class="bento-card col-span-3" id="skills" data-animate data-animate-delay="1">
                     <span class="card-subtitle">02 / Tech Stack</span>
                     <div class="skills-grid-new mt-6">
                         <div class="skill-group">
@@ -99,7 +98,7 @@
                 </div>
 
                 <!-- Experience Card -->
-                <div class="bento-card col-span-3" id="experience">
+                <div class="bento-card col-span-3" id="experience" data-animate data-animate-delay="2">
                     <span class="card-subtitle">03 / Experience</span>
                     <div class="exp-list mt-6">
                         <div class="exp-item">
@@ -107,7 +106,7 @@
                                 <div class="exp-logo-container">
                                     <img src="images/logos/capgemini.png" alt="Capgemini" class="exp-logo">
                                 </div>
-                                <span class="exp-date">May 2025 - Present</span>
+                                <span class="exp-date">May 2025 — Present</span>
                             </div>
                             <h3 class="exp-title">Senior Consultant, Gen AI</h3>
                         </div>
@@ -116,7 +115,7 @@
                                 <div class="exp-logo-container">
                                     <img src="images/logos/outbound.png" alt="Outbound AI" class="exp-logo">
                                 </div>
-                                <span class="exp-date">Dec 2023 - May 2025</span>
+                                <span class="exp-date">Dec 2023 — May 2025</span>
                             </div>
                             <h3 class="exp-title">Machine Learning Engineer</h3>
                         </div>
@@ -125,9 +124,34 @@
                                 <div class="exp-logo-container">
                                     <img src="images/logos/tcs.png" alt="TCS" class="exp-logo">
                                 </div>
-                                <span class="exp-date">Jan 2019 - Dec 2023</span>
+                                <span class="exp-date">Jan 2019 — Dec 2023</span>
                             </div>
                             <h3 class="exp-title">Data Scientist</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education Card -->
+                <div class="bento-card col-span-3" id="education" data-animate data-animate-delay="3">
+                    <span class="card-subtitle">04 / Education</span>
+                    <div class="exp-list mt-6">
+                        <div class="exp-item">
+                            <div class="exp-header">
+                                <div class="edu-info">
+                                    <h3 class="exp-title">Master of Computer Applications</h3>
+                                    <span class="exp-company">SASTRA Deemed University</span>
+                                </div>
+                                <span class="exp-date">2018 — 2021</span>
+                            </div>
+                        </div>
+                        <div class="exp-item">
+                            <div class="exp-header">
+                                <div class="edu-info">
+                                    <h3 class="exp-title">B.Sc. Information Technology</h3>
+                                    <span class="exp-company">HNB Garhwal University</span>
+                                </div>
+                                <span class="exp-date">2015 — 2018</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -137,39 +161,55 @@
         <!-- Projects Section -->
         <section id="projects" class="projects-section">
             <h2 class="section-heading">SELECTED WORKS</h2>
-            
+
+            <!-- Featured projects: your best 3–4. Full case study or demo treatment. -->
             <div class="projects-list">
-                
-                <!-- Project 1 -->
-                <div class="project-row group">
+
+                <!-- Project 1 — Case Study -->
+                <div class="project-row" data-animate>
                     <div class="project-num">01</div>
                     <div class="project-info">
-                        <span class="project-category">AI Search & Optimization</span>
+                        <div class="project-meta">
+                            <span class="project-category">AI Search & Optimization</span>
+                            <span class="project-type case-study">Case Study</span>
+                        </div>
                         <h3 class="project-title">Cobuddy</h3>
                         <ul class="project-details">
-                            <li>Designed a "Context-Aware" search that looks at summaries and FAQs, making answers 40% more accurate.</li>
-                            <li>Built a smart routing system that picks the cheapest model for the job, slashing API costs by 60%.</li>
-                            <li>Automated the document upload process to handle 10,000+ chunks of data.</li>
+                            <li>Designed a "Context-Aware" search using summaries and FAQs, improving answer accuracy by 40%.</li>
+                            <li>Built a smart routing system that picks the most cost-effective model per task, cutting API costs by 60%.</li>
+                            <li>Added a hidden query-refinement step that cleans and expands vague user questions before search.</li>
+                            <li>Automated document ingestion to process 10,000+ chunks for over 1,000 active users.</li>
+                            <li>Used AI Vision to extract text from complex PDF layouts and tables that standard parsers missed.</li>
                         </ul>
                         <div class="tech-tags">
                             <span>Generative AI</span>
                             <span>AI Vision</span>
                             <span>Smart Routing</span>
+                            <span>RAG</span>
                         </div>
+                        <!-- For demo projects, add below:
+                        <a href="YOUR_DEMO_URL" class="demo-link" target="_blank" rel="noopener noreferrer">
+                            View Demo <i class="fas fa-arrow-up-right-from-square"></i>
+                        </a> -->
                     </div>
                     <div class="project-icon"><i class="fas fa-arrow-right"></i></div>
                 </div>
 
-                <!-- Project 2 -->
-                <div class="project-row group">
+                <!-- Project 2 — Case Study -->
+                <div class="project-row" data-animate>
                     <div class="project-num">02</div>
                     <div class="project-info">
-                        <span class="project-category">Code Analysis & Graphs</span>
+                        <div class="project-meta">
+                            <span class="project-category">Code Analysis & Graphs</span>
+                            <span class="project-type case-study">Case Study</span>
+                        </div>
                         <h3 class="project-title">Change Analyzer</h3>
                         <ul class="project-details">
                             <li>Built a GitHub-integrated analysis tool using the OpenAI API to summarize code changes and flag risks during the PR process.</li>
+                            <li>Engineered a prompt-chaining strategy that synthesizes individual file diffs into coherent impact analysis reports for large PRs.</li>
                             <li>Developed a multi-language parser with Tree-sitter to traverse Abstract Syntax Trees (AST).</li>
                             <li>Designed a Gremlin-based graph schema in Azure Cosmos DB to model code dependencies.</li>
+                            <li>Mapped function signatures and call graphs to create a queryable knowledge graph, improving accuracy of automated code reviews.</li>
                         </ul>
                         <div class="tech-tags">
                             <span>OpenAI API</span>
@@ -181,16 +221,19 @@
                     <div class="project-icon"><i class="fas fa-arrow-right"></i></div>
                 </div>
 
-                <!-- Project 3 -->
-                <div class="project-row group">
+                <!-- Project 3 — Case Study -->
+                <div class="project-row" data-animate>
                     <div class="project-num">03</div>
                     <div class="project-info">
-                        <span class="project-category">Generative AI</span>
+                        <div class="project-meta">
+                            <span class="project-category">Generative AI</span>
+                            <span class="project-type case-study">Case Study</span>
+                        </div>
                         <h3 class="project-title">Financial Q&A System</h3>
                         <ul class="project-details">
-                            <li>Successfully developed and implemented a robust Question and Answering system with generative AI to extract accurate financial information.</li>
-                            <li>Proficiently utilized tools such as llama_index, langchain, and Flan-T5-large.</li>
-                            <li>Achieved precise and detailed explanations, ensuring high-quality results.</li>
+                            <li>Developed a robust Question and Answering system with generative AI to extract accurate financial information.</li>
+                            <li>Utilized llama_index, langchain, and Flan-T5-large for precise document retrieval and generation.</li>
+                            <li>Deployed on Azure ML with high-quality, detailed explanations across complex financial documents.</li>
                         </ul>
                         <div class="tech-tags">
                             <span>Llama_index</span>
@@ -202,44 +245,101 @@
                     <div class="project-icon"><i class="fas fa-arrow-right"></i></div>
                 </div>
 
-                <!-- Project 4 -->
-                <div class="project-row group">
-                    <div class="project-num">04</div>
-                    <div class="project-info">
-                        <span class="project-category">Data Extraction & Analytics</span>
-                        <h3 class="project-title">Claim Status Reporting</h3>
-                        <ul class="project-details">
-                            <li>Led comprehensive claims analytics for a diverse portfolio of 100+ payers using statistical analysis and AI.</li>
-                            <li>Developed and implemented sophisticated data extraction algorithms for enhanced speech-to-text accuracy.</li>
-                            <li>Engineered a robust data extraction framework with configurable templates, maintaining strict HIPAA compliance.</li>
-                        </ul>
-                        <div class="tech-tags">
-                            <span>NLP</span>
-                            <span>Statistical Analysis</span>
-                            <span>Data Extraction</span>
+            </div>
+        </section>
+
+        <!-- More Work Grid: compact cards for additional projects -->
+        <section class="more-work-section">
+            <h2 class="section-heading">MORE WORK</h2>
+            <div class="more-work-grid">
+
+                <!-- Compact card — Case Study -->
+                <div class="project-card" data-animate>
+                    <div class="project-card-header">
+                        <div class="project-meta">
+                            <span class="project-category">Data Extraction & Analytics</span>
+                            <span class="project-type case-study">Case Study</span>
                         </div>
+                        <i class="fas fa-arrow-up-right-from-square project-card-icon"></i>
                     </div>
-                    <div class="project-icon"><i class="fas fa-arrow-right"></i></div>
+                    <h3 class="project-card-title">Claim Status Reporting</h3>
+                    <p class="project-card-desc">HIPAA-compliant claims analytics across 100+ payers using statistical AI and configurable extraction templates.</p>
+                    <div class="tech-tags">
+                        <span>NLP</span>
+                        <span>Statistical Analysis</span>
+                        <span>Data Extraction</span>
+                    </div>
                 </div>
+
+                <!--
+                    ADD MORE PROJECTS HERE using this template:
+
+                    Case Study card:
+                    <div class="project-card" data-animate>
+                        <div class="project-card-header">
+                            <div class="project-meta">
+                                <span class="project-category">Category</span>
+                                <span class="project-type case-study">Case Study</span>
+                            </div>
+                            <i class="fas fa-arrow-up-right-from-square project-card-icon"></i>
+                        </div>
+                        <h3 class="project-card-title">Project Title</h3>
+                        <p class="project-card-desc">One sentence describing the core impact.</p>
+                        <div class="tech-tags"><span>Tag</span></div>
+                    </div>
+
+                    Live Demo card — add href to the wrapping <a>:
+                    <a class="project-card" href="YOUR_DEMO_URL" target="_blank" rel="noopener noreferrer" data-animate>
+                        <div class="project-card-header">
+                            <div class="project-meta">
+                                <span class="project-category">Category</span>
+                                <span class="project-type demo">Live Demo</span>
+                            </div>
+                            <i class="fas fa-arrow-up-right-from-square project-card-icon"></i>
+                        </div>
+                        <h3 class="project-card-title">Project Title</h3>
+                        <p class="project-card-desc">One sentence describing the core impact.</p>
+                        <div class="tech-tags"><span>Tag</span></div>
+                    </a>
+                -->
 
             </div>
         </section>
 
+        <!-- Blog Preview -->
+        <section class="blog-preview-section">
+            <h2 class="section-heading">LATEST WRITING</h2>
+            <!-- BLOG-PREVIEW-START -->
+            <div class="blog-preview-grid">
+            <a class="blog-card" href="blog/posts/building-rag-systems-that-actually-work.html" data-animate>
+                <span class="blog-card-category">RAG</span>
+                <h3 class="blog-card-title">Building RAG Systems That Actually Work</h3>
+                <p class="blog-card-excerpt">Lessons from shipping a production RAG pipeline to 1,000+ users — context-aware search, query refinement, and smart model routing.</p>
+                <div class="blog-card-meta">
+                    <span><i class="far fa-calendar"></i> April 14, 2026</span>
+                    <span><i class="far fa-clock"></i> 8 min read</span>
+                </div>
+            </a>
+            </div>
+            <a href="blog/" class="view-all-link">View All Posts <i class="fas fa-arrow-right"></i></a>
+            <!-- BLOG-PREVIEW-END -->
+        </section>
+
         <!-- Footer / Contact -->
         <footer id="contact" class="site-footer">
-            <div class="footer-content">
-                <h2>Let's build the future.</h2>
-                <a href="mailto:hello@example.com" class="btn primary-btn mt-6">Get in touch <i class="fas fa-paper-plane"></i></a>
-                
+            <div class="footer-content" data-animate>
+                <h2>Let's build<br>the future.</h2>
+                <a href="mailto:anur4g.bhatt@outlook.com" class="btn primary-btn mt-6">Get in Touch</a>
+
                 <div class="footer-links mt-12">
                     <a href="http://github.com/ianuragbhatt/" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
                     <a href="https://www.linkedin.com/in/ianuragbhatt/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                    <a href="https://x.com/ianuragbhatt" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i> Twitter / X</a>
+                    <a href="https://x.com/ianuragbhatt" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i> Twitter</a>
                 </div>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2026 Anurag Bhatt. All rights reserved.</p>
-                <p>Designed with ❤️ and AI.</p>
+                <p>Designed with intention.</p>
             </div>
         </footer>
     </main>
