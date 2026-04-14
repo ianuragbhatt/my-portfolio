@@ -38,6 +38,27 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => el.classList.add('hero-visible'), 120 + order * 160);
     });
 
+    // ─── Years of experience (auto-updates each year) ─────────
+    function yearsFromDate(isoDate) {
+        const start = new Date(isoDate);
+        const now = new Date();
+        return Math.floor((now - start) / (365.25 * 24 * 60 * 60 * 1000));
+    }
+
+    // Resolve dynamic counts before animating
+    document.querySelectorAll('.stat-num[data-count-from]').forEach(el => {
+        const years = yearsFromDate(el.dataset.countFrom);
+        el.dataset.count = years;
+        el.textContent = years + (el.dataset.suffix || '');
+    });
+
+    // Sync hero tagline years
+    const yearsExpEl = document.getElementById('years-exp');
+    if (yearsExpEl) {
+        const yrs = yearsFromDate('2018-07-20');
+        yearsExpEl.textContent = yrs;
+    }
+
     // ─── Stat counter animation ───────────────────────────────
     function animateCounter(el, target, suffix, duration = 1400) {
         const start = performance.now();
